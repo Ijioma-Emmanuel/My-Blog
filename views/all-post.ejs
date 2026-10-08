@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>All Posts | Your Blog</title>
+
+  <link rel="stylesheet" href="/styles/all-posts.css">
+</head>
+
+<body>
+
+  <!-- =========================
+       HEADER
+  ========================== -->
+
+  <%- include("partials/header") %>
+
+
+  <main>
+
+    <!-- =========================
+         PAGE HERO
+    ========================== -->
+
+    <section class="posts-hero">
+
+      <div class="container">
+
+        <span class="eyebrow">THE JOURNAL</span>
+
+        <h1>Explore All Posts</h1>
+
+        <p class="hero-description">
+          Discover stories, ideas, lessons, and insights from my journey
+          through technology, creativity, personal growth, and everyday life.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         POSTS SECTION
+    ========================== -->
+
+    <section class="all-posts-section">
+
+      <div class="container">
+
+        <!-- Search + Filter -->
+
+        <div class="posts-toolbar">
+
+          <div class="search-wrapper">
+
+            <label for="postSearch" class="sr-only">
+              Search posts
+            </label>
+
+            <form action="/search" method="GET" id="searchform">
+           <input
+             type="search"
+             name="q"
+             placeholder="Search articles..."
+             required
+
+              id="postSearch"
+              class="post-search"
+              placeholder="Search posts..."
+              autocomplete="off"
+            >
+
+               <button id="postSearch-btn" type="submit">Search</button>
+              </form>
+          </div>
+
+
+        <div class="category-filter">
+         <form action="/filter" method="get" id="filterform">
+            <a href="all-post"><button
+              type="button"
+              class="category-btn active"
+              data-category="all"
+            >
+              All
+            </button>
+            </a>
+
+            <button
+              type="button"
+              class="category-btn new-category-btn"
+              data-category="Web Development"
+            >
+              Web Development
+            </button>
+
+            <button
+              type="button"
+              class="category-btn new-category-btn"
+              data-category="Artificial Intelligence"
+            >
+              AI
+            </button>
+
+            <button
+              type="button"
+              class="category-btn new-category-btn"
+              data-category="Technology"
+            >
+              Technology
+            </button>
+
+            <button
+              type="button"
+              class="category-btn new-category-btn"
+              data-category="Programming"
+            >
+              Programming
+            </button>
+
+            <button
+              type="button"
+              class="category-btn new-category-btn"
+              data-category="Career"
+            >
+              Career
+            </button>
+
+          </form>
+        </div>
+
+      </div>
+
+
+        <!-- =========================
+             RESULTS HEADER
+        ========================== -->
+
+        <div class="results-header">
+
+          <div>
+            <h2>All Posts</h2>
+
+            <p id="resultsCount">
+              Explore the latest articles, thoughts, and experiences.
+            </p>
+          </div>
+
+        </div>
+
+
+        <!-- =========================
+             POSTS GRID
+        ========================== -->
+
+        <div class="posts-grid" id="postsGrid">
+
+
+          <% if (posts && posts.length > 0) { %>
+
+            <% posts.forEach(post => { %>
+
+              <article
+                class="post-card"
+                data-category="<%= post.category %>"
+                data-title="<%= post.title %>"
+                data-description="<%= post.description %>"
+                data-image= "<%= post.image %>"
+              >
+              
+
+                <!-- Image -->
+
+                <a
+                  href="/post/<%= post.id %>"
+                  class="post-image-link"
+                  aria-label="Read <%= post.title %>"
+                >
+
+                  <div class="post-image-wrapper">
+
+                    <% if (post.image) { %>
+
+                      <img
+                        src="<%= post.image %>"
+                        alt="<%= post.title %>"
+                        class="post-image"
+                        loading="lazy"
+                      >
+
+                    <% } else { %>
+
+                      <div class="post-image-placeholder">
+                        <span>ARTICLE</span>
+                      </div>
+
+                    <% } %>
+
+                  </div>
+
+                </a>
+
+
+                <!-- Content -->
+
+                <div class="post-content">
+
+                  <div class="post-meta">
+
+                    <span class="post-category">
+                      <%= post.category %>
+                    </span>
+
+                  </div>
+
+
+                  <h3 class="post-title">
+
+                    <a href="/post/<%= post.id %>">
+                      <%= post.title %>
+                    </a>
+
+                  </h3>
+
+
+                  <p class="post-description">
+                    <%= post.content %>
+                  </p>
+
+                  <div id="post-date">
+                    <span class="post-category post-date">
+                    <%= post.date %>
+                   </span>
+                  </div>
+
+
+                  <a
+                    href="/single-post/<%= post.id %>"
+                    class="read-more"
+                  >
+                    Read article
+                    <span aria-hidden="true">→</span>
+                  </a>
+
+                </div>
+
+              </article>
+
+            <% }) %>
+
+
+          <% } else { %>
+
+            <!-- Empty state -->
+
+            <div class="empty-state">
+
+              <div class="empty-icon">
+                +
+              </div>
+
+              <h3>No posts yet</h3>
+
+              <p>
+                Your published articles will appear here once you create them.
+              </p>
+
+              <a href="/create" class="empty-action">
+                Create your first post
+              </a>
+
+            </div>
+
+          <% } %>
+
+
+        </div>
+
+
+        <!-- =========================
+             NO SEARCH RESULTS
+        ========================== -->
+
+        <div
+          class="no-results"
+          id="noResults"
+          hidden
+        >
+
+          <h3>No posts found</h3>
+
+          <p>
+            Try searching for something else or choose another category.
+          </p>
+
+          <button
+            type="button"
+            id="clearFilters"
+          >
+            Clear filters
+          </button>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         NEWSLETTER
+    ========================== -->
+
+    <section class="newsletter-section">
+
+      <div class="container">
+
+        <div class="newsletter">
+
+          <div class="newsletter-content">
+
+            <span class="eyebrow">
+              STAY CONNECTED
+            </span>
+
+            <h2>
+              Get new posts and updates delivered straight to your inbox.
+            </h2>
+
+            <p>
+              No noise. Just useful ideas, lessons, and stories worth reading.
+            </p>
+
+          </div>
+
+
+          <form class="newsletter-form">
+
+            <label for="email" class="sr-only">
+              Email address
+            </label>
+
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Your email address"
+              required
+            >
+
+            <button type="submit">
+              Subscribe
+            </button>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <%- include("partials/footer") %>
+
+
+  <script src="/js/all-posts.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+</head>
+<body>
+
+     <%- include("partials/header.ejs") %>
+
+     <div class="create-container">
+
+    <a href="/" class="return">←Back</a>
+    <h3>Create a New Post</h3>
+
+    <form action="<%= post ? '/edit-post/' + post.id : '/create-post' %>" method="post" enctype="multipart/form-data" id="createform">
+        <% if (post) { %>
+        <input type="hidden" name="_method" value="PATCH">
+    <% } %>
+     <label for="title">Title</label>
+     <input type="text" id="title" 
+     name="title" 
+     placeholder="Enter post title" 
+     required
+     value="<%= post ? post.title : '' %>"
+     >
+
+     <label for="author">Author</label>
+     <input type="text" id="author" 
+     name="author" placeholder="Enter your name" required
+     value="<%= post ? post.author : '' %>"
+     >
+
+     <label for="category">Category</label>
+     <select id="category" name="category" required>
+     <option value="">Select category...</option>
+    <option value="Web Development" <%= post && post.category === "Web Development" ? "selected" : "" %>>
+        Web Development
+    </option>
+     <option value="artificial intelligece" <%= post && post.category === "artificial intelligece" ? "selected" : "" %>>
+        Artificial Intelligence
+    </option>
+     <option value="technology" <%= post && post.category === "technology" ? "selected" : "" %>>
+        Technology
+    </option>
+     <option value="cybersecurity" <%= post && post.category === "cybersecurity" ? "selected" : "" %>>
+        Cybersecurity
+    </option>
+     <option value="programming" <%= post && post.category === "programming" ? "selected" : "" %>>
+        Programming
+    </option>
+     <option value="career" <%= post && post.category === "career" ? "selected" : "" %>>
+        Career
+    </option>
+     <option value="business" <%= post && post.category === "business" ? "selected" : "" %>>
+        Business
+    </option>
+     <option value="finance" <%= post && post.category === "finance" ? "selected" : "" %>>
+        Finance
+    </option>
+     <option value="lifestyle" <%= post && post.category === "lifestyle" ? "selected" : "" %>>
+        Lifestyle
+    </option>
+     <option value="personal growth" <%= post && post.category === "personal growth" ? "selected" : "" %>>
+        Personal Growth
+    </option>
+     <option value="health & wellness" <%= post && post.category === "health & wellness" ? "selected" : "" %>>
+        Health & Wellness
+    </option>
+     <option value="opinions" <%= post && post.category === "opinions" ? "selected" : "" %>>
+        Opinions
+    </option>
+     <option value="productivity" <%= post && post.category === "productivity" ? "selected" : "" %>>
+        Productivity
+    </option>
+     <option value="Other" <%= post && post.category === "Other" ? "selected" : "" %>>
+        Other
+    </option>
+     </select>
+
+     <div class="featured-container">
+     <span class="featured">Select an image</span>
+
+     <input
+      type="file"
+      id="imgInput"
+      name="imgInput"
+      accept="image/*"
+     >
+     <div class="img-preview" id="imagePreview">
+        <% if (post && post.image) { %>
+         <img
+          src="<%= post.image %>" 
+         alt="Image preview" class="previewedImg"
+         ><% } else { %>
+             <img
+              src="" alt="Image preview" 
+             class="previewedImg"
+             >
+             <span class="image-text">Image Preview</span>
+        <% } %>
+     </div>
+     </div>
+
+
+     <label for="content">Content</label>
+     <textarea 
+     type="text" id="content" 
+     name="content" placeholder="Write your post here..." 
+     required
+     ><%= post ? post.content: '' %></textarea>
+
+      <div class="button-c">
+        <button
+            class="cancel-btn sum-button"
+            type="button"
+            onclick="window.location.href='<%= post ? `/single-post/${post.id}` : '/' %>'"
+        >
+         <%= post ? "Discard Changes" : "Cancel" %>
+        </button>
+
+         <button
+          class="publish-btn sum-button"
+           id="publish" type="submit"
+         ><%= post ? "Update Post" : "Publish Post" %>
+        </button>
+       </div>
+ </form>
+ </div>
+
+    <%- include("partials/footer.ejs") %>
+</body>
+</html>

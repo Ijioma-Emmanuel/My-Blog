@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <%- include("partials/header.ejs") %>
+
+     <div class="about-container">
+
+    <div class="about-image">
+        <img src="/about-image.jpg" alt="About header background image">
+    </div>
+
+    <div id="about-header">
+       <h1>About This Blog</h1>
+       <p>This is a space where I share my thoughts, experiences, and things I'm learning.</p>
+    </div>
+
+    </div>
+
+     <div class="profile-section">
+    <h3 class="first-h3">About Me</h3>
+    <img src="/PROFILE PIC.jpg" alt="Profile Picture">
+
+    <div id="profile-text-container">
+     <h3>About Me</h3>
+    
+     <span class="alt-text">Ijioma Emmanuel</span>
+     <span class="alt-text1">Web Developer</span>
+
+     <p>Hi, my name is Ijioma Emmanuel, 
+         and I am a fullstack web developer with a passion for building responsive and pixel perfect websites. 
+         I created this blog to document my journey and share what I've learned along the way.
+     </p>
+    </div>
+
+    </div>
+
+    <div class="journey">
+        <h3>My Journey</h3>
+        <ul>
+            <li>B.Sc Microbiology</li>
+            <p>Michael Okpara University of Agriculture 
+               2020 – 2025
+            </p>
+
+            <li>Sales Manager</li>
+             <p> Sirkings Clothing Store
+                 2022 – Present
+             </p>
+
+            <li>Fullstack Developer</li>
+            <p>
+                Building my skills and working towards bigger goals
+            </p>
+        </ul>
+    </div>
+
+    <div class="skill">
+        <h3>Skills</h3>
+
+        <div class="skill-set">
+        <ul>
+            <li>Html</li>
+            <li>Css</li>
+            <li>JavaScript</li>
+            <li>Node.js</li>
+            <li>Express</li>
+            <li>Git & Github</li>
+        </ul>
+        </div>
+    </div>
+
+    <div class="connect">
+        <h3>Let's Connect</h3>
+        <p>Feel free to reach out, I'm always open to new opportunities.</p>
+    
+
+     <div class="ico">
+
+     <!-- X / Twitter -->
+     <a href="https://x.com/DGrtDev" aria-label="X">
+        <i class="fa-brands fa-x-twitter" id="ico"></i>
+     </a>
+
+     <!-- LinkedIn -->
+     <a href="https://wa.me/2348066686729" target="_blank" aria-label="WhatsApp">
+        <i class="fa-brands fa-whatsapp" id="ico"></i>
+     </a>
+
+     <!-- GitHub -->
+      <a href="https://github.com/Ijioma-Emmanuel" target="_blank" aria-label="GitHub">
+        <i class="fa-brands fa-github" id="ico"></i>
+     </a>
+
+     <!-- Email -->
+     <a href="mailto:emmanuelijioma4@gmail.com" aria-label="Email">
+        <i class="fa-solid fa-envelope" id="ico"></i>
+     </a>
+
+     </div>
+
+    </div>
+
+     <%- include("partials/footer.ejs") %>
+</body>
+</html>

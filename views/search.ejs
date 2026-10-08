@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+<%- include('partials/header.ejs') %>
+
+
+  <h1>Search Results</h1>
+
+<p>Results for: <%= query %></p>
+
+<% if (results && results.length > 0) { %>
+
+  <div class="posts-grid" id="postsGrid">
+
+    <% results.forEach(post => { %>
+
+      <article class="post-card">
+
+        <a
+          href="/single-post/<%= post.id %>"
+          class="post-image-link"
+          aria-label="Read <%= post.title %>"
+        >
+
+          <div class="post-image-wrapper">
+
+            <% if (post.image) { %>
+
+              <img
+                src="<%= post.image %>"
+                alt="<%= post.title %>"
+                class="post-image"
+                loading="lazy"
+              >
+
+            <% } else { %>
+
+              <div class="post-image-placeholder">
+                <span>ARTICLE</span>
+              </div>
+
+            <% } %>
+
+          </div>
+
+        </a>
+
+        <div class="post-content">
+
+          <div class="post-meta">
+            <span class="post-category">
+              <%= post.category %>
+            </span>
+          </div>
+
+          <h3 class="post-title">
+            <a href="/single-post/<%= post.id %>">
+              <%= post.title %>
+            </a>
+          </h3>
+
+          <p class="post-description">
+            <%= post.content %>
+          </p>
+
+          <div id="post-date">
+            <span class="post-category post-date">
+              <%= post.date %>
+            </span>
+          </div>
+
+          <a
+            href="/single-post/<%= post.id %>"
+            class="read-more"
+          >
+            Read article
+            <span aria-hidden="true">→</span>
+          </a>
+
+        </div>
+
+      </article>
+
+    <% }) %>
+
+  </div>
+
+<% } else { %>
+
+  <p>No articles found for "<%= query %>". Try another search.</p>
+
+<% } %>
+
+
+<%- include('partials/footer.ejs') %>
+  
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Individual Post</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+</head>
+<body>
+    <%- include("partials/header.ejs") %>
+
+
+    <div class="post-container">
+ <div class="post-actions">
+    <a class="return" href="/all-post">← Back to all Posts</a>
+
+    <div class="post-buttons">
+        <form action="/edit-post/<%= post.id %>" method="GET">
+            <a href="/create"><button type="submit" class="edit-btn">Edit</button></a>
+        </form>
+
+
+        <form action="/delete-post/<%= post.id %>"method="POST">
+            <input type="hidden" name="_method" value="DELETE"> 
+            <button type="submit" class="delete-btn">Delete</button>
+        </form>
+    </div>
+</div>
+
+   <% if (post.image) { %>
+    <img src="<%= post.image %>" alt="<%= post.title %>">
+  <% } %>
+    <span class="single-post-category">
+    <%= post.category %>
+    </span>
+    <h1 class="single-post"><%= post.title %></h1>
+
+    <div class="author-date">
+        <div> 
+            <i class="fa-solid fa-user"></i><%= post.author %>
+        </div>
+
+         <div>  • </div>
+
+          <div> 
+            <i class="fa-solid fa-calendar"></i> <%= post.date %>
+        </div>
+    </div>  
+    
+    <p>
+        <%= post.content %>
+    </p>
+
+    <h4>Share this post</h4>
+
+    <div class="social-icons single-post">
+
+    <!-- X / Twitter -->
+    <a href="#" aria-label="X">
+        <i class="fa-brands fa-x-twitter"></i>
+    </a>
+
+    <!-- LinkedIn -->
+    <a href="#" aria-label="LinkedIn">
+        <i class="fa-brands fa-linkedin"></i>
+    </a>
+
+    <!-- GitHub -->
+    <a href="#" aria-label="GitHub">
+        <i class="fa-brands fa-github"></i>
+    </a>
+
+    <!-- Email -->
+    <a href="mailto:your@email.com" aria-label="Email">
+        <i class="fa-solid fa-envelope"></i>
+    </a>
+
+</div>
+
+<div id="tags">
+
+<h3>Tags</h3>
+
+<div class="tag-list">
+    <form action="/filter" method="GET">
+      <button
+              type="button"
+              class="category-btn new-category-btn"
+              data-category="Web Development"
+            >
+              Web Development
+            </button>
+
+            <button
+            type="button"
+            class="category-btn new-category-btn"
+            data-category="Journey"
+          >
+            Journey
+          </button>
+          <button
+            type="button"
+            class="category-btn new-category-btn"
+            data-category="Personal growth"
+          >
+            Personal growth
+          </button>
+            <button
+              type="button"
+              class="category-btn new-category-btn"
+              data-category="Life"
+            >
+              Life
+            </button>
+    </form>
+
+</div>
+</div>
+</div>
+<%- include("partials/footer.ejs") %>
+</body>
+</html>
