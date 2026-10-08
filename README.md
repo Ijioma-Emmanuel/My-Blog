@@ -1,0 +1,1 @@
+This is a dynamic blog website built as a learning project to understand how EJS works with Node.js and Express. The project focuses on implementing CRUD operations, passing dynamic JavaScript data into HTML through EJS, handling routes and forms, and understanding the overall design, structure, and architecture of a web application.
